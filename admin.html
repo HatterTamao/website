@@ -2,31 +2,162 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Admin Live Chat</title>
+<title>Admin Panel</title>
 <style>
-body { font-family: Arial; background:#f5f5f5; padding:20px }
-.chat-box { background:white; padding:15px; border-radius:10px; max-width:400px; margin:auto }
-.chat-body { height:300px; overflow-y:auto; margin-bottom:10px }
-.admin-msg { background:#1e90ff; color:white; padding:6px 10px; border-radius:8px; margin:5px 0 }
-.user-msg { background:#eee; padding:6px 10px; border-radius:8px; margin:5px 0 }
-input { width:75%; padding:8px }
-button { padding:8px 12px }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== CHAT CARD ===== */
+.chat-wrapper {
+    width: 100%;
+    padding: 12px;
+}
+
+.chat-box {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    height: min(85svh, 700px); /* 🔥 KUNCI */
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin: auto;
+}
+
+/* ===== HEADER ===== */
+.chat-header {
+    background: #1e90ff;
+    color: white;
+    padding: 14px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 14px 14px 0 0;
+}
+
+/* ===== CHAT BODY ===== */
+.chat-body {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    background: #f9f9f9;
+}
+
+/* ===== MESSAGE ===== */
+.admin-msg {
+    align-self: flex-end;
+    background: #1e90ff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 14px;
+    margin-bottom: 6px;
+    max-width: 75%;
+}
+
+.user-msg {
+    align-self: flex-start;
+    background: #eaeaea;
+    padding: 8px 12px;
+    border-radius: 14px;
+    margin-bottom: 6px;
+    max-width: 75%;
+}
+
+/* ===== INPUT ===== */
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: white;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.chat-input button {
+    margin-left: 8px;
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: none;
+    background: #1e90ff;
+    color: white;
+}
+
+/* ===== LOGOUT ===== */
+.logout-btn {
+    border: none;
+    background: #e74c3c;
+    color: white;
+    padding: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* ===== MOBILE TWEAK ===== */
+@media (max-width: 600px) {
+    .chat-box {
+        height: 85svh; /* PASTI TIDAK MEMANJANG */
+    }
+}
+</style>
+
+
+
 </style>
 </head>
 <body>
 
-<h2 style="text-align:center">🛠 Admin Live Chat</h2>
+<div class="chat-wrapper">
 
-<div class="chat-box">
-    <div class="chat-body" id="chatBody"></div>
-    <input id="chatInput" placeholder="Balas pesan...">
-    <button onclick="sendAdmin()">Kirim</button>
+    <div class="chat-box">
+
+        <div class="chat-header">
+            🛠 Admin Live Chat
+        </div>
+
+        <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
+
+        <div class="chat-body" id="chatBody"></div>
+
+        <div class="chat-input">
+            <input id="chatInput" placeholder="Balas pesan...">
+            <button onclick="sendAdmin()">Kirim</button>
+        </div>
+
+    </div>
+
 </div>
 
+
+
+
 <script>
+// 🔒 PROTEKSI HALAMAN ADMIN
+if (!localStorage.getItem("isAdmin")) {
+    alert("Akses ditolak!");
+    window.location.href = "index.html";
+}
+
+// load chat
 function loadChat() {
-    const chatBody = document.getElementById("chatBody");
     let chats = JSON.parse(localStorage.getItem("liveChat")) || [];
+    const chatBody = document.getElementById("chatBody");
     chatBody.innerHTML = "";
 
     chats.forEach(chat => {
@@ -55,7 +186,14 @@ function sendAdmin() {
     loadChat();
 }
 
+function logoutAdmin() {
+    localStorage.removeItem("isAdmin");
+    alert("Logout admin");
+    window.location.href = "index.html";
+}
+
 setInterval(loadChat, 1000);
+loadChat();
 </script>
 
 </body>
