@@ -208,6 +208,24 @@ function sendAdmin() {
     input.value = "";
     loadChat();
 }
+const ADMIN_USERNAME = "admin";
+const ADMIN_PASSWORD = "12345"; // bebas, untuk demo
+
+
+function loginAdmin() {
+    const username = prompt("Username Admin:");
+    const password = prompt("Password Admin:");
+
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        localStorage.setItem("isAdmin", "true");
+        alert("Login admin berhasil");
+        window.location.href = "admin.html";
+    } else {
+        alert("Login admin gagal!");
+    }
+}
+
+
 
 
 

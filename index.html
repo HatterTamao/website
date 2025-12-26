@@ -1,357 +1,401 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fakhri Badminton Store</title>
-<style>
-/* ===== GLOBAL ===== */
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fa;
-    color: #333;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakhri Badminton Store</title>
+    <style>
+        /* ===== GLOBAL ===== */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
 
-/* ===== HEADER ===== */
-header {
-    background: #1e90ff;
-    color: white;
-    padding: 16px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-header a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
+        /* ===== HEADER ===== */
+        header {
+            background: #1e90ff;
+            color: white;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-/* ===== SEARCH ===== */
-.search-box {
-    text-align: center;
-    margin: 20px 0;
-}
-.search-box input {
-    padding: 10px;
-    width: 250px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-.search-box button {
-    padding: 10px 20px;
-    background: #1e90ff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
 
-/* ===== PRODUCTS ===== */
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 25px;
-    padding: 30px;
-}
-.product-card {
-    background: white;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-}
-.product-card:hover {
-    transform: translateY(-5px);
-}
-.product-card img {
-    width: 100%;
-    height: 250px; /* gambar lebih panjang */
-    object-fit: cover;
-    border-radius: 10px;
-}
-.product-card h3 {
-    margin: 10px 0 5px;
-}
-.product-card p {
-    color: #1e90ff;
-    font-weight: bold;
-    font-size: 16px;
-}
-.product-card button {
-    margin-top: 10px;
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 20px;
-    cursor: pointer;
-}
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-/* ===== CART POPUP ===== */
-.cart-box {
-    position: fixed;
-    top: 80px;
-    right: 20px;
-    width: 320px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    display: none;
-    flex-direction: column;
-    z-index: 998;
-}
-.cart-header {
-    background: #1e90ff;
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    border-radius: 15px 15px 0 0;
-}
-.cart-body {
-    padding: 15px;
-    max-height: 230px;
-    overflow-y: auto;
-}
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-.cart-item button {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.cart-footer {
-    padding: 15px;
-    border-top: 1px solid #eee;
-}
-.checkout-btn {
-    width: 100%;
-    background: #27ae60;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-}
+        /* ===== SEARCH ===== */
+        .search-box {
+            text-align: center;
+            margin: 20px 0;
+        }
 
-/* ===== LIVE CHAT ===== */
-.chat-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #1e90ff;
-    color: white;
-    padding: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-    z-index: 999;
-}
-.chat-box {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 300px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    display: none;
-    flex-direction: column;
-    z-index: 999;
-}
-.chat-header {
-    background: #1e90ff;
-    color: white;
-    padding: 10px;
-}
-.chat-body {
-    padding: 10px;
-    height: 200px;
-    overflow-y: auto;
-    font-size: 14px;
-}
-.chat-input {
-    display: flex;
-    border-top: 1px solid #ddd;
-}
-.chat-input input {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    outline: none;
-}
-.chat-input button {
-    background: #1e90ff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-}
-.admin-msg {
-    background: #f1f1f1;
-    padding: 6px 10px;
-    border-radius: 8px;
-    margin-bottom: 5px;
-}
-.user-msg {
-    background: #1e90ff;
-    color: white;
-    padding: 6px 10px;
-    border-radius: 8px;
-    margin-bottom: 5px;
-    text-align: right;
-}
+        .search-box input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
 
-/* ===== AUTH ===== */
-.auth-container {
-    position: fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-.auth-box {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 300px;
-}
-.auth-box input {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-.auth-box button {
-    background: #1e90ff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-#authMessage { margin-top: 5px; color:red; }
-</style>
+        .search-box button {
+            padding: 10px 20px;
+            background: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* ===== PRODUCTS ===== */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            /* gambar lebih panjang */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0 5px;
+        }
+
+        .product-card p {
+            color: #1e90ff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .product-card button {
+            margin-top: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* ===== CART POPUP ===== */
+        .cart-box {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 320px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            z-index: 998;
+        }
+
+        .cart-header {
+            background: #1e90ff;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .cart-body {
+            padding: 15px;
+            max-height: 230px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .cart-item button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* ===== LIVE CHAT ===== */
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1e90ff;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 999;
+        }
+
+        .chat-box {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+        }
+
+        .chat-header {
+            background: #1e90ff;
+            color: white;
+            padding: 10px;
+        }
+
+        .chat-body {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .admin-msg {
+            background: #f1f1f1;
+            padding: 6px 10px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+
+        .user-msg {
+            background: #1e90ff;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+
+        /* ===== AUTH ===== */
+        .auth-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .auth-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .auth-box input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .auth-box button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #authMessage {
+            margin-top: 5px;
+            color: red;
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- LOGIN & REGISTER -->
-<div class="auth-container" id="authContainer">
-    <div class="auth-box">
-        <h2 id="authTitle">Login</h2>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button id="authBtn">Login</button>
-        <p id="toggleText">
-            Belum punya akun? 
-            <span onclick="showRegister()" style="cursor:pointer; color:blue;">Daftar</span>
-        </p>
-        <p id="authMessage"></p>
+    <!-- LOGIN & REGISTER -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <h2 id="authTitle">Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button id="authBtn">Login</button>
+            <p id="toggleText">
+                Belum punya akun?
+                <span onclick="showRegister()" style="cursor:pointer; color:blue;">Daftar</span>
+            </p>
+            <p id="authMessage"></p>
+        </div>
     </div>
-</div>
 
-<header>
-    <h1>🏸 Fakhri Badminton</h1>
-    <a href="#" onclick="toggleCart()">🛒 Keranjang (<span id="cart-count">0</span>)</a>
-</header>
+    <header>
+        <h1>🏸 Fakhri Badminton</h1>
+        <a href="#" onclick="toggleCart()">🛒 Keranjang (<span id="cart-count">0</span>)</a>
+       <button onclick="loginAdmin()" id="adminBtn"
+        style="margin-left:15px;padding:6px 12px;border-radius:8px;cursor:pointer;">
+        🔐 Admin
+</button>
 
-<div class="search-box">
-    <input type="text" id="searchInput" placeholder="Cari produk...">
-    <button onclick="searchProduct()">Cari</button>
-</div>
 
-<div class="products">
-    <div class="product-card">
-        <img src="assets/raketastrox.jpg">
-        <h3>Raket Yonex Astrox</h3>
-        <p>Rp 1.400.000</p>
-        <button onclick="addToCart('Raket Yonex Astrox',1400000)">Tambah</button>
-    </div>
-    <div class="product-card">
-        <img src="assets/liningaxforce.jpg">
-        <h3>Raket Lining Axforce</h3>
-        <p>Rp 700.000</p>
-        <button onclick="addToCart('Raket Lining Axforce',700000)">Tambah</button>
-    </div>
-    <div class="product-card">
-        <img src="assets/maxxpower.jpg">
-        <h3>Raket Maxx Power</h3>
-        <p>Rp 500.000</p>
-        <button onclick="addToCart('Raket Maxx Power',500000)">Tambah</button>
-    </div>
-    <div class="product-card">
-        <img src="assets/sepatulining.jpg">
-        <h3>Sepatu Lining</h3>
-        <p>Rp 750.000</p>
-        <button onclick="addToCart('Sepatu Lining',750000)">Tambah</button>
-    </div>
-    <div class="product-card">
-        <img src="assets/sepatuastec.jpeg">
-        <h3>Sepatu Astec Koya</h3>
-        <p>Rp 500.000</p>
-        <button onclick="addToCart('Sepatu Astec Koya',500000)">Tambah</button>
-    </div>
-    <div class="product-card">
-        <img src="assets/kok.jpg">
-        <h3>Shuttlecock Yonex AS-30</h3>
-        <p>Rp 125.000</p>
-        <button onclick="addToCart('Shuttlecock Yonex AS-30',125000)">Tambah</button>
-    </div>
-    <div class="product-card">
-        <img src="assets/bahlil.jpg">
-        <h3>Jersey Badminton</h3>
-        <p>Rp 100.000</p>
-        <button onclick="addToCart('Jersey Badminton',100000)">Tambah</button>
-    </div>
-    <div class="product-card">
-        <img src="assets/tasyonex.jpg">
-        <h3>Tas Raket Badminton</h3>
-        <p>Rp 220.000</p>
-        <button onclick="addToCart('Tas Raket Badminton',220000)">Tambah</button>
-    </div>
-</div>
+    </header>
 
-<div class="cart-box" id="cartBox">
-    <div class="cart-header">Keranjang Belanja</div>
-    <div class="cart-body" id="cartItems">Keranjang kosong</div>
-    <div class="cart-footer">
-        Total: Rp <span id="total">0</span>
-        <button class="checkout-btn" onclick="checkoutIG()">Checkout Instagram</button>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari produk...">
+        <button onclick="searchProduct()">Cari</button>
     </div>
-</div>
 
-<div class="chat-button" onclick="toggleChat()">💬</div>
-<div class="chat-box" id="chatBox">
-    <div class="chat-header">Live Chat</div>
-    <div class="chat-body" id="chatBody">
-        <div class="admin-msg">Halo 👋 Ada yang bisa dibantu?</div>
+    <div class="products">
+        <div class="product-card">
+            <img src="assets/raketastrox.jpg">
+            <h3>Raket Yonex Astrox</h3>
+            <p>Rp 1.400.000</p>
+            <button onclick="addToCart('Raket Yonex Astrox',1400000)">Tambah</button>
+        </div>
+        <div class="product-card">
+            <img src="assets/liningaxforce.jpg">
+            <h3>Raket Lining Axforce</h3>
+            <p>Rp 700.000</p>
+            <button onclick="addToCart('Raket Lining Axforce',700000)">Tambah</button>
+        </div>
+        <div class="product-card">
+            <img src="assets/maxxpower.jpg">
+            <h3>Raket Maxx Power</h3>
+            <p>Rp 500.000</p>
+            <button onclick="addToCart('Raket Maxx Power',500000)">Tambah</button>
+        </div>
+        <div class="product-card">
+            <img src="assets/sepatulining.jpg">
+            <h3>Sepatu Lining</h3>
+            <p>Rp 750.000</p>
+            <button onclick="addToCart('Sepatu Lining',750000)">Tambah</button>
+        </div>
+        <div class="product-card">
+            <img src="assets/sepatuastec.jpeg">
+            <h3>Sepatu Astec Koya</h3>
+            <p>Rp 500.000</p>
+            <button onclick="addToCart('Sepatu Astec Koya',500000)">Tambah</button>
+        </div>
+        <div class="product-card">
+            <img src="assets/kok.jpg">
+            <h3>Shuttlecock Yonex AS-30</h3>
+            <p>Rp 125.000</p>
+            <button onclick="addToCart('Shuttlecock Yonex AS-30',125000)">Tambah</button>
+        </div>
+        <div class="product-card">
+            <img src="assets/bahlil.jpg">
+            <h3>Jersey Badminton</h3>
+            <p>Rp 100.000</p>
+            <button onclick="addToCart('Jersey Badminton',100000)">Tambah</button>
+        </div>
+        <div class="product-card">
+            <img src="assets/tasyonex.jpg">
+            <h3>Tas Raket Badminton</h3>
+            <p>Rp 220.000</p>
+            <button onclick="addToCart('Tas Raket Badminton',220000)">Tambah</button>
+        </div>
     </div>
-    <div class="chat-input">
-        <input id="chatInput">
-        <button onclick="sendMessage()">Kirim</button>
-    </div>
-</div>
 
-<script src="script.js"></script>
+    <div class="cart-box" id="cartBox">
+        <div class="cart-header">Keranjang Belanja</div>
+        <div class="cart-body" id="cartItems">Keranjang kosong</div>
+        <div class="cart-footer">
+            Total: Rp <span id="total">0</span>
+            <button class="checkout-btn" onclick="checkoutIG()">Checkout Instagram</button>
+        </div>
+    </div>
+
+    <div class="chat-button" onclick="toggleChat()">💬</div>
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">Live Chat</div>
+        <div class="chat-body" id="chatBody">
+            <div class="admin-msg">Halo 👋 Ada yang bisa dibantu?</div>
+        </div>
+        <div class="chat-input">
+            <input id="chatInput">
+            <button onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
