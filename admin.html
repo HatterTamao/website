@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Admin Live Chat</title>
+<style>
+body { font-family: Arial; background:#f5f5f5; padding:20px }
+.chat-box { background:white; padding:15px; border-radius:10px; max-width:400px; margin:auto }
+.chat-body { height:300px; overflow-y:auto; margin-bottom:10px }
+.admin-msg { background:#1e90ff; color:white; padding:6px 10px; border-radius:8px; margin:5px 0 }
+.user-msg { background:#eee; padding:6px 10px; border-radius:8px; margin:5px 0 }
+input { width:75%; padding:8px }
+button { padding:8px 12px }
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center">🛠 Admin Live Chat</h2>
+
+<div class="chat-box">
+    <div class="chat-body" id="chatBody"></div>
+    <input id="chatInput" placeholder="Balas pesan...">
+    <button onclick="sendAdmin()">Kirim</button>
+</div>
+
+<script>
+function loadChat() {
+    const chatBody = document.getElementById("chatBody");
+    let chats = JSON.parse(localStorage.getItem("liveChat")) || [];
+    chatBody.innerHTML = "";
+
+    chats.forEach(chat => {
+        const div = document.createElement("div");
+        div.className = chat.sender === "admin" ? "admin-msg" : "user-msg";
+        div.innerText = chat.message;
+        chatBody.appendChild(div);
+    });
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function sendAdmin() {
+    const input = document.getElementById("chatInput");
+    if (!input.value.trim()) return;
+
+    let chats = JSON.parse(localStorage.getItem("liveChat")) || [];
+    chats.push({
+        sender: "admin",
+        message: input.value,
+        time: new Date().toLocaleTimeString()
+    });
+
+    localStorage.setItem("liveChat", JSON.stringify(chats));
+    input.value = "";
+    loadChat();
+}
+
+setInterval(loadChat, 1000);
+</script>
+
+</body>
+</html>
