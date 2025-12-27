@@ -300,8 +300,8 @@
             <input type="password" id="password" placeholder="Password">
             <button id="authBtn">Login</button>
             <p id="toggleText">
-                Belum punya akun?
-                <span onclick="showRegister()" style="cursor:pointer; color:blue;">Daftar</span>
+                Don’t have an account?
+                <span onclick="showRegister()" style="cursor:pointer; color:blue;">Register</span>
             </p>
             <p id="authMessage"></p>
         </div>
@@ -309,7 +309,7 @@
 
     <header>
         <h1>🏸 Fakhri Badminton</h1>
-        <a href="#" onclick="toggleCart()">🛒 Keranjang (<span id="cart-count">0</span>)</a>
+        <a href="#" onclick="toggleCart()">🛒 CART (<span id="cart-count">0</span>)</a>
        <button onclick="loginAdmin()" id="adminBtn"
         style="margin-left:15px;padding:6px 12px;border-radius:8px;cursor:pointer;">
         🔐 Admin
@@ -319,8 +319,8 @@
     </header>
 
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Cari produk...">
-        <button onclick="searchProduct()">Cari</button>
+        <input type="text" id="searchInput" placeholder="Search product...">
+        <button onclick="searchProduct()">Search</button>
     </div>
 
     <div class="products">
@@ -328,57 +328,57 @@
             <img src="assets/raketastrox.jpg">
             <h3>Raket Yonex Astrox</h3>
             <p>Rp 1.400.000</p>
-            <button onclick="addToCart('Raket Yonex Astrox',1400000)">Tambah</button>
+            <button onclick="addToCart('Raket Yonex Astrox',1400000)">Add to Cart</button>
         </div>
         <div class="product-card">
             <img src="assets/liningaxforce.jpg">
             <h3>Raket Lining Axforce</h3>
             <p>Rp 700.000</p>
-            <button onclick="addToCart('Raket Lining Axforce',700000)">Tambah</button>
+            <button onclick="addToCart('Raket Lining Axforce',700000)">Add to Cart</button>
         </div>
         <div class="product-card">
             <img src="assets/maxxpower.jpg">
             <h3>Raket Maxx Power</h3>
             <p>Rp 500.000</p>
-            <button onclick="addToCart('Raket Maxx Power',500000)">Tambah</button>
+            <button onclick="addToCart('Raket Maxx Power',500000)">Add to Cart</button>
         </div>
         <div class="product-card">
             <img src="assets/sepatulining.jpg">
             <h3>Sepatu Lining</h3>
             <p>Rp 750.000</p>
-            <button onclick="addToCart('Sepatu Lining',750000)">Tambah</button>
+            <button onclick="addToCart('Sepatu Lining',750000)">Add to Cart</button>
         </div>
         <div class="product-card">
             <img src="assets/sepatuastec.jpeg">
             <h3>Sepatu Astec Koya</h3>
             <p>Rp 500.000</p>
-            <button onclick="addToCart('Sepatu Astec Koya',500000)">Tambah</button>
+            <button onclick="addToCart('Sepatu Astec Koya',500000)">Add to Cart</button>
         </div>
         <div class="product-card">
             <img src="assets/kok.jpg">
             <h3>Shuttlecock Yonex AS-30</h3>
             <p>Rp 125.000</p>
-            <button onclick="addToCart('Shuttlecock Yonex AS-30',125000)">Tambah</button>
+            <button onclick="addToCart('Shuttlecock Yonex AS-30',125000)">Add to Cart</button>
         </div>
         <div class="product-card">
             <img src="assets/bahlil.jpg">
             <h3>Jersey Badminton</h3>
             <p>Rp 100.000</p>
-            <button onclick="addToCart('Jersey Badminton',100000)">Tambah</button>
+            <button onclick="addToCart('Jersey Badminton',100000)">Add to Cart</button>
         </div>
         <div class="product-card">
             <img src="assets/tasyonex.jpg">
             <h3>Tas Raket Badminton</h3>
             <p>Rp 220.000</p>
-            <button onclick="addToCart('Tas Raket Badminton',220000)">Tambah</button>
+            <button onclick="addToCart('Tas Raket Badminton',220000)">Add to Cart</button>
         </div>
     </div>
 
     <div class="cart-box" id="cartBox">
-        <div class="cart-header">Keranjang Belanja</div>
+        <div class="cart-header">Shopping Cart</div>
         <div class="cart-body" id="cartItems">Keranjang kosong</div>
         <div class="cart-footer">
-            Total: Rp <span id="total">0</span>
+            Total cost: $ <span id="total">0</span>
             <button class="checkout-btn" onclick="checkoutIG()">Checkout Instagram</button>
         </div>
     </div>
@@ -387,11 +387,11 @@
     <div class="chat-box" id="chatBox">
         <div class="chat-header">Live Chat</div>
         <div class="chat-body" id="chatBody">
-            <div class="admin-msg">Halo 👋 Ada yang bisa dibantu?</div>
+            <div class="admin-msg">Hello 👋 How can we help you?</div>
         </div>
         <div class="chat-input">
             <input id="chatInput">
-            <button onclick="sendMessage()">Kirim</button>
+            <button onclick="sendMessage()">Send</button>
         </div>
     </div>
 

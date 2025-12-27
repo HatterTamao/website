@@ -21,20 +21,20 @@ document.getElementById("authBtn").addEventListener("click", () => {
     const message = document.getElementById("authMessage");
 
     if (!username || !password) {
-        message.innerText = "Username & Password wajib diisi!";
+        message.innerText = "Username & password are required!";
         return;
     }
 
     if (authMode === "register") {
         let users = JSON.parse(localStorage.getItem("users")) || [];
         if (users.find(u => u.username === username)) {
-            message.innerText = "Username sudah digunakan!";
+            message.innerText = "Username is already taken!";
             return;
         }
         users.push({ username, password });
         localStorage.setItem("users", JSON.stringify(users));
         message.style.color = "green";
-        message.innerText = "Berhasil daftar! Silakan login.";
+        message.innerText = "Registration successful! Please login.";
         showLogin();
     } else {
         let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -42,14 +42,14 @@ document.getElementById("authBtn").addEventListener("click", () => {
         if (user) {
             localStorage.setItem("loginUser", username);
             message.style.color = "green";
-            message.innerText = "Login berhasil!";
+            message.innerText = "Login successful!";
             setTimeout(() => {
                 document.getElementById("authContainer").style.display = "none";
                 message.innerText = "";
             }, 500);
         } else {
             message.style.color = "red";
-            message.innerText = "Username atau password salah!";
+            message.innerText = "Invalid username or password!";
         }
     }
 });
@@ -58,7 +58,7 @@ document.getElementById("authBtn").addEventListener("click", () => {
 function addToCart(name, price) {
     let loginUser = localStorage.getItem("loginUser");
     if (!loginUser) {
-        alert("Silakan login terlebih dahulu!");
+        alert("Please login first!");
         document.getElementById("authContainer").style.display = "flex";
         return;
     }
@@ -71,7 +71,7 @@ function addToCart(name, price) {
         cart.push({ name, price, qty: 1 });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${name} berhasil ditambahkan ke keranjang!`);
+    alert(`${name} has been added to the cart!`);
     updateCart();
 }
 
@@ -94,7 +94,7 @@ function updateCart() {
         total += item.price * item.qty;
         const div = document.createElement("div");
         div.className = "cart-item";
-        div.innerHTML = `${item.name} (${item.qty}) - Rp ${item.price} <button onclick="removeCart(${index})">Hapus</button>`;
+        div.innerHTML = `${item.name} (${item.qty}) - Rp ${item.price} <button onclick="removeCart(${index})">Delete</button>`;
         cartItems.appendChild(div);
     });
     totalEl.innerText = total;
@@ -116,17 +116,17 @@ function toggleCart() {
 // ===== CHECKOUT INSTAGRAM =====
 function checkoutIG() {
     if (!localStorage.getItem("loginUser")) {
-        alert("Silakan login terlebih dahulu!");
+        alert("Cart is empty");
         document.getElementById("authContainer").style.display = "flex";
         return;
     }
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    if (!cart.length) return alert("Keranjang kosong");
+    if (!cart.length) return alert("Your cart is empty");
 
     localStorage.removeItem("cart");
     updateCart();
-    window.open("https://instagram.com/USERNAME_INSTAGRAM", "_blank");
+    window.open("https://www.instagram.com/fzzm____?igsh=ZnYzaGphbnl4dW1l", "_blank");
 }
 
 // ===== LIVE CHAT =====
@@ -161,7 +161,7 @@ function sendMessage() {
 
             chats.push({
                 sender: "admin",
-                message: "Terima kasih 😊 Admin akan segera membalas.",
+                message: "Thank you 😊 Our admin will reply shortly.",
                 time: new Date().toLocaleTimeString()
             });
 
@@ -221,7 +221,7 @@ function loginAdmin() {
         alert("Login admin berhasil");
         window.location.href = "admin.html";
     } else {
-        alert("Login admin gagal!");
+        alert("Admin login failed");
     }
 }
 

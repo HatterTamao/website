@@ -136,7 +136,7 @@ body {
         <div class="chat-body" id="chatBody"></div>
 
         <div class="chat-input">
-            <input id="chatInput" placeholder="Balas pesan...">
+            <input id="chatInput" placeholder="Type your message...">
             <button onclick="sendAdmin()">Kirim</button>
         </div>
 
@@ -150,7 +150,7 @@ body {
 <script>
 // 🔒 PROTEKSI HALAMAN ADMIN
 if (!localStorage.getItem("isAdmin")) {
-    alert("Akses ditolak!");
+    alert("Access Denied");
     window.location.href = "index.html";
 }
 
